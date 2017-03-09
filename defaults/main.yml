@@ -1,0 +1,13 @@
+---
+# defaults file for rpi-config
+
+apt_base_packages:
+  - sudo
+  - curl
+  - python-pycurl
+  - tree
+  - htop
+  - httpie
+  - wakeonlan
+  - backup-manager
+
