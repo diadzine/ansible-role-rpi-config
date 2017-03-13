@@ -2,5 +2,6 @@
 # tasks file for rpi-config
 
 - include: base.yml
-- inclide: config.yml
+
+- include: config.yml
 
