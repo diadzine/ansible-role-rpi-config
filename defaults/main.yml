@@ -26,3 +26,6 @@ raspberry_pi_rc_local_options:
   - regexp: "^/usr/bin/tvservice"
     line: "/usr/bin/tvservice -o"
 
+raspberry_pi_replace_user:
+  name:
+  path_to_ssh_key: #LOCAL path to your public key file

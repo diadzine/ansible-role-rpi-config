@@ -5,3 +5,6 @@
 
 - include: config.yml
 
+- include: replace_pi_user.yml
+  when: raspberry_pi_replace_user['name'] != None
+

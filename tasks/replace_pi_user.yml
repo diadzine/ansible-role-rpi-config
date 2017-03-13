@@ -1,0 +1,15 @@
+---
+- name: Create user {{raspberry_pi_replace_user['name']}}
+  user: name={{raspberry_pi_replace_user['name']}}
+  changed_when: True
+  notify:
+    - remove default user
+
+- name: Add your login key to {{raspberry_pi_replace_user['name']}}
+  authorized_key: user={{raspberry_pi_replace_user['name']}} key="{{ lookup('file', raspberry_pi_replace_user['path_to_ssh_key']) }}"
+
+- name: Add {{raspberry_pi_replace_user['name']}} to sudoers
+  lineinfile:
+  args:
+    dest: /etc/sudoers
+    line: "{{raspberry_pi_replace_user['name']}} ALL=(ALL) NOPASSWD: ALL"
