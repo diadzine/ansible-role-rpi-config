@@ -1,6 +1,12 @@
 ---
 # defaults file for rpi-config
 
+raspberry_pi_locale: en_US.UTF8
+
+raspberry_pi_timezone: UTC
+
+raspberry_pi_hostname: pi
+
 raspberry_pi_update_packages: yes
 
 apt_base_packages:
@@ -12,6 +18,10 @@ apt_base_packages:
   - httpie
   - wakeonlan
   - backup-manager
+
+raspberry_pi_expanded_filesystem: yes
+
+raspberry_pi_enable_camera: no
 
 raspberry_pi_boot_config_options:
   # Set the GPU memory split value.
