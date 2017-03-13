@@ -1,6 +1,8 @@
 ---
 # defaults file for rpi-config
 
+raspberry_pi_update_packages: yes
+
 apt_base_packages:
   - sudo
   - curl

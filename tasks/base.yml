@@ -4,8 +4,9 @@
 - name: Upgrade distribution
   apt:
     update_cache=yes
-    upgrade=yes
+    upgrade=dist
     cache_valid_time=1800
+  when: raspberry_pi_update_packages
 
 - name: Install base packages
   apt:
