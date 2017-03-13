@@ -1,0 +1,26 @@
+---
+# handlers file for rpi-config
+
+- name: apply raspi-config
+  command: raspi-config --apply-os-config
+
+- name: reboot
+  command: shutdown -r now
+  async: 0
+  poll: 0
+  ignore_errors: True
+  notify:
+    - wait for reboot
+
+- name: wait for reboot
+  local_action: wait_for host={{ inventory_hostname }}
+                state=started
+                timeout=30
+  become: false
+
+- name: remove default user
+  when: "raspberry_pi_replace_user['name'] != raspberry_pi_auth_test_username"
+  user: name={{raspberry_pi_auth_test_username}} state=absent force=yes
+  async: 0
+  poll: 0
+  ignore_errors: True
