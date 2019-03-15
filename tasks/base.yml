@@ -4,9 +4,22 @@
 - name: Upgrade distribution
   apt:
     update_cache=yes
-    upgrade=dist
+    upgrade=safe
     cache_valid_time=1800
   when: raspberry_pi_update_packages
+
+- name: Reboot
+  shell: sleep 2 && reboot
+  async: 1
+  poll: 0
+  ignore_errors: true
+
+- name: Wait for Raspberry PI to come back
+  wait_for:
+    host: "{{ ansible_host }}"
+    port: "{{ ansible_ssh_port }}"
+    state: started
+    delay: 10
 
 - name: Install base packages
   apt:
