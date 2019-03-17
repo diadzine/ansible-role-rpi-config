@@ -7,12 +7,14 @@
     upgrade=safe
     cache_valid_time=1800
   when: raspberry_pi_update_packages
+  register: upgraded
 
 - name: Reboot
   shell: sleep 2 && reboot
   async: 1
   poll: 0
   ignore_errors: true
+  when: upgraded.changed
 
 - name: Wait for Raspberry PI to come back
   become: false
@@ -22,6 +24,7 @@
       port: "{{ ansible_ssh_port }}"
       state: started
       delay: 10
+  when: upgraded.changed
 
 - name: Install base packages
   apt:
