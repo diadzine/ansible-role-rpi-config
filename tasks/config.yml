@@ -26,3 +26,53 @@
   notify:
     - apply raspi-config
     - reboot
+
+- name: Disable bluetooth LE
+  systemd:
+    name: bluetooth
+    enabled: no
+    state: stopped
+  when: not raspberry_pi_enable_bluetooth
+  tags:
+    - bluetooth
+
+- name: Enable bluetooth LE
+  systemd:
+    name: bluetooth
+    enabled: yes
+    state: started
+  when: raspberry_pi_enable_bluetooth
+  tags:
+    - bluetooth
+
+- name: Disable I2C
+  shell: "raspi-config nonint do_i2c 1"
+  when: not raspberry_pi_enable_i2c
+
+- name: Enable I2C
+  shell: "raspi-config nonint do_i2c 0"
+  when: raspberry_pi_enable_i2c
+
+- name: Disable SPI
+  shell: "raspi-config nonint do_spi 1"
+  when: not raspberry_pi_enable_spi
+
+- name: Enable SPI
+  shell: "raspi-config nonint do_spi 0"
+  when: raspberry_pi_enable_spi
+
+- name: Disable OneWire
+  shell: "raspi-config nonint do_onewire 1"
+  when: not raspberry_pi_enable_onewire
+
+- name: Enable OneWire
+  shell: "raspi-config nonint do_onewire 0"
+  when: raspberry_pi_enable_onewire
+
+- name: Disable Serial
+  shell: "raspi-config nonint do_serial 1"
+  when: not raspberry_pi_enable_serial
+
+- name: Enable Serial
+  shell: "raspi-config nonint do_serial 0"
+  when: raspberry_pi_enable_serial

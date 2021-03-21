@@ -22,6 +22,11 @@ apt_base_packages:
 raspberry_pi_expanded_filesystem: yes
 
 raspberry_pi_enable_camera: no
+raspberry_pi_enable_bluetooth: no
+raspberry_pi_enable_i2c: no
+raspberry_pi_enable_spi: no
+raspberry_pi_enable_onewire: no
+raspberry_pi_enable_serial: no
 
 raspberry_pi_boot_config_options:
   # Set the GPU memory split value.
