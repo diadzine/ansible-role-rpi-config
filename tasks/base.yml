@@ -21,7 +21,7 @@
   local_action: wait_for
   args:
       host: "{{ ansible_host }}"
-      port: "{{ ansible_ssh_port }}"
+      port: "{{ ansible_ssh_port | default(22, True) }}"
       state: started
       delay: 10
   when: upgraded.changed
